@@ -6,11 +6,12 @@
 :root{
     --strong-color: #65a30d;
     --light-color: #ecfccb;
+    --width-main: minmax(220px, 18vw)
 }
 
 .container {
     display: grid;
-    grid-template-columns: minmax(220px, 18vw) 5fr;
+    grid-template-columns: var(--width-main) calc(100vw - --width-main);
     grid-template-rows: 25vh 100vh;
 }
 
