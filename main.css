@@ -61,7 +61,7 @@
 #search:focus {
     outline: 2px solid var(--strong-color);
     font-weight: 600;
-}​
+}
 
 .search-right {
     display: flex;
