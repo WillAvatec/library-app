@@ -1,6 +1,6 @@
 let library = [
     {
-        bName:"Hobbit", bAuthor:"Tolkien", bPages: "600", read: true
+        bName:"Hobbit", bAuthor:"Tolkien", bPages: "600", read: false
     }
     ,{
         bName:"MahBook", bAuthor:"Me", bPages: "100", read:false
@@ -10,7 +10,7 @@ let library = [
 // Referencia a la tabla 
 const table = document.querySelector(".styled-table tbody");
 
-// Funcion que se encarga de asignar los datos de la forma en td's
+// Funcion que se encarga de asignar los datos de la libreria en td's
 // y tambien se encarga de los appendChild hacia la fila
 
 function setBookValues(row, name, author, pages, isRead) {
@@ -37,15 +37,17 @@ function setBookValues(row, name, author, pages, isRead) {
 }
 
 
-function addBook(){
+function addBook(bName,bAuthor,bPages,IsRead){
     const tr = document.createElement("tr");
-    setBookValues(tr,"mi libro", "yo", "20 pages", true);
+    setBookValues(tr,bName,bAuthor,bPages,IsRead);
     table.appendChild(tr);
 }
 
 function renderLibrary(){
-    addBook();
+    library.forEach((arrayItem)=>addBook(arrayItem.bName,arrayItem.bAuthor,arrayItem.bPages,arrayItem.read));
 }
+
+renderLibrary();
 
 // Modal javascript
 
