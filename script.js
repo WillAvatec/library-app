@@ -7,7 +7,7 @@ let library = [
     }
 ]
 
-// Referencia a la tabla 
+// Referencia a la tabla (global variable)
 const table = document.querySelector(".styled-table tbody");
 
 // Funcion que se encarga de asignar los datos de la libreria en td's
@@ -44,7 +44,7 @@ function addBook(bName,bAuthor,bPages,IsRead){
 }
 
 function renderLibrary(){
-    library.forEach((arrayItem)=>addBook(arrayItem.bName,arrayItem.bAuthor,arrayItem.bPages,arrayItem.read));
+    library.forEach((item)=>addBook(item.bName,item.bAuthor,item.bPages,item.read));
 }
 
 renderLibrary();

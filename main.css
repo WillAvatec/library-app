@@ -55,7 +55,7 @@
     letter-spacing: .08rem;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 500;
-
+    padding: 5px;
 }
 
 #search:focus {
