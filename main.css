@@ -15,22 +15,6 @@
     grid-template-rows: 20vh 100vh;
 }
 
-.options {
-    text-align: start;
-    margin-left: calc(3vw - 10px);
-}
-
-.options > ul > li > a {
-    color: white;
-    text-align: left;
-    text-decoration: none;
-    font-size: 2rem;
-}
-
-#support {
-    margin-top: 15vh;
-}
-
 .header, .main-content{
     font-family: 'Urbanist', sans-serif;
 }
