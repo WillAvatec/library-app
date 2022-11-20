@@ -1,14 +1,15 @@
 let library = [
     {
-        bName:"Hobbit", bAuthor:"Tolkien", bPages: "600", read: false
+        bId: 0, bName:"Hobbit", bAuthor:"Tolkien", bPages: "600", read: false
     }
     ,{
-        bName:"MahBook", bAuthor:"Me", bPages: "100", read:false
+        bId: 1, bName:"MahBook", bAuthor:"Me", bPages: "100", read:false
     }
 ]
 
-function Book(id, bName, bAuthor, bPages, read=false){
-    this.id = id;
+console.table(library)
+
+function Book(bName, bAuthor, bPages, read=false){
     this.bName = bName;
     this.bAuthor = bAuthor;
     this.bPages = bPages;
@@ -17,10 +18,9 @@ function Book(id, bName, bAuthor, bPages, read=false){
 
 // Referencia a la tabla (global variable)
 const table = document.querySelector(".styled-table tbody");
-let bookID = library.length - 1; 
-console.log(bookID);
 
-// Convertir valores de formulario a Book object
+// Convertir valores de formulario a Book
+
 const formButton = document.querySelector("#submit");
 
 formButton.addEventListener("click",(event)=>{
@@ -29,13 +29,22 @@ formButton.addEventListener("click",(event)=>{
     let author = document.querySelector("#author").value;
     let pages = document.querySelector("#page").value;
     let read = document.querySelector("#read").checked;
-    
-    let book = new Book(bookID++, name,author,pages,read);
-    console.log(book);
-    console.table(book);
+
+    let book = new Book(name,author,pages,read);
     library.push(book);
-    console.table(library);
+
+    renderLibrary()
 });
+
+// Borrar Book de tanto la library y de la tabla
+
+const remove = document.getElementsByClassName("remove");
+
+
+
+function deleteBook(index){
+    library.splice(library.indexOf(index), 1)
+}
 
 
 // Funcion que se encarga de asignar los datos de la libreria en td's
@@ -48,6 +57,7 @@ function setBookValues(row, name, author, pages, isRead) {
     const bPages = document.createElement("td");
     const read = document.createElement("td");
     const erase = document.createElement("td");
+    erase.setAttribute("class","remove");
 
     bName.textContent = name;
     bAuthor.textContent = author;
@@ -55,6 +65,7 @@ function setBookValues(row, name, author, pages, isRead) {
     isRead===true ? read.textContent = "SI": read.textContent = "NO";
     erase.innerHTML = "&times;"
 
+    /* rowFixed.setAttribute("data-index",) */
     rowFixed.appendChild(bName);
     rowFixed.appendChild(bAuthor);
     rowFixed.appendChild(bPages);
