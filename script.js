@@ -45,7 +45,7 @@ function setBookValues(row, name, author, pages, isRead) {
 }
 
 
-// Añadir libro creado a la talba
+// Añadir libro creado a la tabla
 
 function addBookToTable(bName,bAuthor,bPages,IsRead){
     const tr = document.createElement("tr");
