@@ -7,6 +7,14 @@ let library = [
     }
 ]
 
+function Book(id, bName, bAuthor, bPages, read=false){
+    this.id = id;
+    this.bName = bName;
+    this.bAuthor = bAuthor;
+    this.bPages = bPages;
+    this.read = read;
+}
+
 // Referencia a la tabla (global variable)
 const table = document.querySelector(".styled-table tbody");
 
@@ -37,7 +45,9 @@ function setBookValues(row, name, author, pages, isRead) {
 }
 
 
-function addBook(bName,bAuthor,bPages,IsRead){
+// Añadir libro creado a la talba
+
+function addBookToTable(bName,bAuthor,bPages,IsRead){
     const tr = document.createElement("tr");
     setBookValues(tr,bName,bAuthor,bPages,IsRead);
     table.appendChild(tr);
