@@ -17,6 +17,26 @@ function Book(id, bName, bAuthor, bPages, read=false){
 
 // Referencia a la tabla (global variable)
 const table = document.querySelector(".styled-table tbody");
+let bookID = library.length - 1; 
+console.log(bookID);
+
+// Convertir valores de formulario a Book object
+const formButton = document.querySelector("#submit");
+
+formButton.addEventListener("click",(event)=>{
+    event.preventDefault()
+    let name = document.querySelector("#name").value;
+    let author = document.querySelector("#author").value;
+    let pages = document.querySelector("#page").value;
+    let read = document.querySelector("#read").checked;
+    
+    let book = new Book(bookID++, name,author,pages,read);
+    console.log(book);
+    console.table(book);
+    library.push(book);
+    console.table(library);
+});
+
 
 // Funcion que se encarga de asignar los datos de la libreria en td's
 // y tambien se encarga de los appendChild hacia la fila
@@ -53,8 +73,19 @@ function addBookToTable(bName,bAuthor,bPages,IsRead){
     table.appendChild(tr);
 }
 
+function cleanTable(){
+    let children = table.lastElementChild;
+    while(children){
+        table.removeChild(children);
+        children = table.lastElementChild;
+    }
+
+}
+
+
 function renderLibrary(){
-    library.forEach((item)=>addBook(item.bName,item.bAuthor,item.bPages,item.read));
+    cleanTable();
+    library.forEach((item)=>addBookToTable(item.bName,item.bAuthor,item.bPages,item.read));
 }
 
 renderLibrary();
