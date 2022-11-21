@@ -1,9 +1,9 @@
 let library = [
     {
-        bId: 0, bName:"Hobbit", bAuthor:"Tolkien", bPages: "600", read: false
+        bName:"Hobbit", bAuthor:"Tolkien", bPages: "600", read: false
     }
     ,{
-        bId: 1, bName:"MahBook", bAuthor:"Me", bPages: "100", read:false
+        bName:"MahBook", bAuthor:"Me", bPages: "100", read:false
     }
 ]
 
@@ -38,19 +38,27 @@ formButton.addEventListener("click",(event)=>{
 
 // Borrar Book de tanto la library y de la tabla
 
-const remove = document.getElementsByClassName("remove");
+const remove = document.body.querySelectorAll("remove");
+
+Array.from(remove).forEach((element)=>{
+    element.addEventListener("click",()=>{
+        let value = element.parentElement.getAttribute("data-index");
+        console.log(element.parentElement)
+        console.log(value);
+        deleteBook(value)})
+})
 
 
-
-function deleteBook(index){
-    library.splice(library.indexOf(index), 1)
+function deleteBook(i){
+    library.splice(i, 1);
+    renderLibrary();
 }
 
 
 // Funcion que se encarga de asignar los datos de la libreria en td's
 // y tambien se encarga de los appendChild hacia la fila
 
-function setBookValues(row, name, author, pages, isRead) {
+function setBookValues(row,index, name, author, pages, isRead) {
     const rowFixed = row
     const bName = document.createElement("td");
     const bAuthor = document.createElement("td");
@@ -65,7 +73,8 @@ function setBookValues(row, name, author, pages, isRead) {
     isRead===true ? read.textContent = "SI": read.textContent = "NO";
     erase.innerHTML = "&times;"
 
-    /* rowFixed.setAttribute("data-index",) */
+    
+    rowFixed.setAttribute("data-index",index)
     rowFixed.appendChild(bName);
     rowFixed.appendChild(bAuthor);
     rowFixed.appendChild(bPages);
@@ -78,11 +87,19 @@ function setBookValues(row, name, author, pages, isRead) {
 
 // Añadir libro creado a la tabla
 
-function addBookToTable(bName,bAuthor,bPages,IsRead){
+function addBookToTable(index,bName,bAuthor,bPages,IsRead){
     const tr = document.createElement("tr");
-    setBookValues(tr,bName,bAuthor,bPages,IsRead);
+    setBookValues(
+        tr,
+        index,
+        bName,
+        bAuthor,
+        bPages,
+        IsRead);
     table.appendChild(tr);
 }
+
+// Elimina los child elements de la tabla [WHILE(there is at least one child elemnt)]
 
 function cleanTable(){
     let children = table.lastElementChild;
@@ -93,16 +110,24 @@ function cleanTable(){
 
 }
 
+// Limpiar tabla and por cada elemento del array. se añade a la libreria
 
 function renderLibrary(){
     cleanTable();
-    library.forEach((item)=>addBookToTable(item.bName,item.bAuthor,item.bPages,item.read));
+    library.forEach((item,index)=>addBookToTable(
+        index,
+        item.bName,
+        item.bAuthor,
+        item.bPages,
+        item.read)
+        );
 }
 
 renderLibrary();
 
-// Modal javascript
 
+
+// Modal javascript
 
 // Referencias a los  elementos del DOM
 
