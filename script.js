@@ -7,7 +7,7 @@ let library = [
     }
 ]
 
-console.table(library)
+/* console.table(library) */
 
 function Book(bName, bAuthor, bPages, read=false){
     this.bName = bName;
@@ -36,18 +36,19 @@ formButton.addEventListener("click",(event)=>{
     renderLibrary()
 });
 
+renderLibrary();
+
+
 // Borrar Book de tanto la library y de la tabla
 
-const remove = document.body.querySelectorAll("remove");
+const remove = document.querySelectorAll(".remove");
 
-Array.from(remove).forEach((element)=>{
-    element.addEventListener("click",()=>{
-        let value = element.parentElement.getAttribute("data-index");
-        console.log(element.parentElement)
-        console.log(value);
-        deleteBook(value)})
+remove.forEach((node)=>{
+    node.addEventListener("click",()=>{   
+        let value = node.parentElement.getAttribute("data-index")
+        deleteBook(value)}
+    )
 })
-
 
 function deleteBook(i){
     library.splice(i, 1);
@@ -121,9 +122,8 @@ function renderLibrary(){
         item.bPages,
         item.read)
         );
-}
 
-renderLibrary();
+}
 
 
 
@@ -150,3 +150,5 @@ window.addEventListener("click", (e)=>{
         modal.style.display = "none"
     }
 })
+
+
