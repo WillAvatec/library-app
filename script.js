@@ -41,14 +41,18 @@ renderLibrary();
 
 // Borrar Book de tanto la library y de la tabla
 
-const remove = document.querySelectorAll(".remove");
 
-remove.forEach((node)=>{
-    node.addEventListener("click",()=>{   
-        let value = node.parentElement.getAttribute("data-index")
-        deleteBook(value)}
-    )
-})
+function restartListener(){
+
+    const remove = document.querySelectorAll(".remove");
+
+    remove.forEach((node)=>{
+        node.addEventListener("click",()=>{   
+            let value = node.parentElement.getAttribute("data-index")
+            deleteBook(value)}
+        )
+    })
+}
 
 function deleteBook(i){
     library.splice(i, 1);
@@ -122,7 +126,7 @@ function renderLibrary(){
         item.bPages,
         item.read)
         );
-
+    restartListener();
 }
 
 
