@@ -1,20 +1,32 @@
 let library = [
     {
-        bName:"Hobbit", bAuthor:"Tolkien", bPages: "600", read: false
+        name:"Hobbit", author:"Tolkien", pages: "600", read: false
     }
     ,{
-        bName:"MahBook", bAuthor:"Me", bPages: "100", read:false
+        name:"MahBook", author:"Me", pages: "100", read:false
     }
 ]
 
 /* console.table(library) */
 
-function Book(bName, bAuthor, bPages, read=false){
+// Using classes
+
+class Book {
+    constructor(name,author,pages,read){
+        this.name = name;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+}
+
+
+/* function Book(bName, bAuthor, bPages, read=false){
     this.bName = bName;
     this.bAuthor = bAuthor;
     this.bPages = bPages;
     this.read = read;
-}
+} */
 
 // Referencia a la tabla (global variable)
 const table = document.querySelector(".styled-table tbody");
@@ -121,9 +133,9 @@ function renderLibrary(){
     cleanTable();
     library.forEach((item,index)=>addBookToTable(
         index,
-        item.bName,
-        item.bAuthor,
-        item.bPages,
+        item.name,
+        item.author,
+        item.pages,
         item.read)
         );
     restartListener();
