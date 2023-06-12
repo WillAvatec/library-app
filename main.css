@@ -95,8 +95,9 @@
     padding: 20px;
     border: 1px solid #888;
     border-radius: 8px;
-    min-width: 430px; /* Could be more or less, depending on screen size */
+    min-width: 450px; /* Could be more or less, depending on screen size */
     max-width: 45vw;
+
 }
 
 /* Modal Form Content/Grid */
